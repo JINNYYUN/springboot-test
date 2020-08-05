@@ -45,7 +45,7 @@ var main = {
 
         $.ajax({
             type: 'PUT',
-            url: '/api/v1/posts/'+id,
+            url: '/api/v1/posts/'+id, /*어느 게시글을 수정할지 URL Path로 구분하기 위해 Path에 id를 추가한다.*/
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
