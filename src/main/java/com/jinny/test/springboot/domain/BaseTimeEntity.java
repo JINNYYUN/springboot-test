@@ -1,4 +1,4 @@
-package com.jinny.test.springboot.domain.user;
+package com.jinny.test.springboot.domain;
 
 
 import lombok.Getter;
