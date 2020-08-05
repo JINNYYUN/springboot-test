@@ -25,7 +25,7 @@ public class PostsService {
         return postsRepository.save(requestDto.toEntity()).getId();
     }
 
-    @Transactional
+    @Transactional //쿼리를 날리지 않고, JPA의 영속성 컨텍스트를 이용한 더티체킹
     public Long update(Long id, PostsUpdateRequestDto requestDto) {
         Posts posts = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
@@ -43,10 +43,19 @@ public class PostsService {
         return new PostsResponseDto(entity);
     }
 
+    //쿼리사용
     @Transactional(readOnly = true)
     public List<PostsListResponseDto> findAllDesc() {
         return postsRepository.findAllDesc().stream()
                 .map(PostsListResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void delete (Long id) {
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+
+        postsRepository.delete(posts);
     }
 }
