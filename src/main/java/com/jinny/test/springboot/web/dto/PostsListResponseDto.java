@@ -4,6 +4,7 @@ import com.jinny.test.springboot.domain.posts.Posts;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 public class PostsListResponseDto {
@@ -19,3 +20,4 @@ public class PostsListResponseDto {
         this.modifiedDate = entity.getModifiedDate();
     }
 }
+
